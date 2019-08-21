@@ -1,15 +1,3 @@
-/*********************************************************************************
- *      Copyright:  (C) 2019 LingYun<lingyun@email.com>
- *                  All rights reserved.
- *
- *       Filename:  byte_to_str.c
- *    Description:  This file 
- *                 
- *        Version:  1.0.0(26/05/19)
- *         Author:  LingYun <lingyun@email.com>
- *      ChangeLog:  1, Release initial version on "26/05/19 15:20:40"
- *                 
- ********************************************************************************/
 #include <stdio.h>
 #define delims "|"
 

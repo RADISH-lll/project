@@ -1,16 +1,3 @@
-/********************************************************************************
- *      Copyright:  (C) 2019 Ma Weidong<2452656887@qq.com>
- *                  All rights reserved.
- *
- *       Filename:  crc-iut-t.h
- *    Description:  This head file 
- *
- *        Version:  1.0.0(24/05/19)
- *         Author:  Ma Weidong <2452656887@qq.com>
- *      ChangeLog:  1, Release initial version on "24/05/19 20:30:12"
- *                 
- ********************************************************************************/
-
 /*
  *	crc-itu-t.h - CRC ITU-T V.41 routine
  *

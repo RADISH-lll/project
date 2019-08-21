@@ -1,15 +1,3 @@
-/*********************************************************************************
- *      Copyright:  (C) 2019 LingYun<lingyun@email.com>
- *                  All rights reserved.
- *
- *       Filename:  tlv_client.c
- *    Description:  This file 
- *                 
- *        Version:  1.0.0(24/05/19)
- *         Author:  LingYun <lingyun@email.com>
- *      ChangeLog:  1, Release initial version on "24/05/19 21:19:36"
- *                 
- ********************************************************************************/
 #include <stdio.h>
 #include <unistd.h>
 #include <getopt.h>

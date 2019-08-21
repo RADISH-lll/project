@@ -1,15 +1,3 @@
-/*********************************************************************************
- *      Copyright:  (C) 2019 LingYun<lingyun@email.com>
- *                  All rights reserved.
- *
- *       Filename:  sock_init.c
- *    Description:  This file 
- *                 
- *        Version:  1.0.0(02/04/19)
- *         Author:  LingYun <lingyun@email.com>
- *      ChangeLog:  1, Release initial version on "02/04/19 16:54:33"
- *                 
- ********************************************************************************/
 #include <stdio.h>
 #include <sys/types.h>
 #include <errno.h>
