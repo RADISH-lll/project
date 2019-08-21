@@ -10,10 +10,10 @@
 #include "sock_init.h"
 #include "get_temper.h"
 #include "crc-itu-t.h"
+
 #define THE_HEAD    0xFD
 #define MIN_SIZE    5
 #define delims      "|"
-
 
 int go_stop = 0;
 
@@ -34,26 +34,25 @@ void printf_usage(char *progname)
 	return ;
 }
 
-
-
 int main(int argc , char *argv[])
 {   
     char                            buf1[100] ;
    	char                            pack_buf[64];
     char                            temper_buf[64];
    	char                            id_buf[16];
-    int                             p     =   0;
-    char                            * progname;
-    int                             sockfd          =   -1;
+    int                             p = 0;
+    char                            *progname;
+    int                             sockf = -1;
     
     int                             opt;         
-    int                             port        =   0;
-    int                             sleeptime	  =   0;
+    int                             port = 0;
+    int                             sleeptime = 0;
     
-	int                             datalen     =   0;
-    int                             pack_len    =   0;
-    int                             crc16       =   0;
-    int                             byte        =   0;
+	int                             datalen = 0;
+    int                             pack_len = 0;
+    int                             crc16 = 0;
+    int                             byte = 0;
+    
     char                            *command;
     char                            **pptr;
 	char                            *servip;
@@ -86,18 +85,15 @@ int main(int argc , char *argv[])
         }
     }
  	
-    
     if(!servip || !servport || !sleeptime)
     {
         printf_usage(progname);
         return 0;
     }
 	
-    
     printf("请输入ID:");
 	scanf("%s",&id_buf);
 	
-    
     while(!go_stop)
 	{	
 		if(sockfd<0)
@@ -105,8 +101,7 @@ int main(int argc , char *argv[])
 			if((sockfd = sock_init(servip,servport)) < 0)
 			{
 				printf("Sock_init() failure\n");
-				sleep(1);
-                
+				sleep(1);            
 			}
 			else
             {
@@ -116,7 +111,6 @@ int main(int argc , char *argv[])
 		}
 		if(sockfd>=0)
 		{
-            
             memset(pack_buf,0,sizeof(pack_buf));
 
         //id part;

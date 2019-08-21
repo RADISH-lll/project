@@ -25,13 +25,9 @@
 #define SIZE 64
 #define MESSAGE "get data"
 
-
-
 void set_sock_rlimit(void);
 int  rw_to_sqlite(char result[][32]);
 char get_time(char *datime);
-
-
 
 void print_usage(char *progname)
 {
@@ -42,15 +38,11 @@ void print_usage(char *progname)
     printf("Example:%s -b -p 9990 \n",progname);
 }
 
-
-
-
 int main(int argc,char * argv[])
 {
-
     int                 opt;
     int                 servport = 0;
-    char                  *progname = NULL;
+    char                *progname = NULL;
     int                 listenfd,connfd,epollfd;
     int                 events;
     int                 rv;
@@ -59,7 +51,7 @@ int main(int argc,char * argv[])
     struct epoll_event  event;
     struct epoll_event  event_array[MAX_EVENTS];
     int                 a=0;
-    int                *flag=&a;
+    int                 *flag=&a;
     
 	char 				buf[SIZE];
     char 				true_buf[SIZE];
@@ -118,9 +110,7 @@ int main(int argc,char * argv[])
     if(daemon_run)
     {
         daemon(0,0)
-
     }
-    
     */
 
     if( ( epollfd = epoll_create(MAX_EVENTS)) < 0)
@@ -138,8 +128,6 @@ int main(int argc,char * argv[])
         return -4;
     }
 
-
-
     for( ; ; )
     {
         events = epoll_wait(epollfd,event_array,MAX_EVENTS,-1);
@@ -154,8 +142,7 @@ int main(int argc,char * argv[])
             printf("time out\n");
             continue;
         }
-        
-        
+                
         for(int i=0;i<events;i++)
         {
             if((event_array[i].events&EPOLLERR < 0) || (event_array[i].events&EPOLLHUP))
@@ -187,7 +174,6 @@ int main(int argc,char * argv[])
                 printf("Add new successfully\n");
             }
 
-
             else//already connected client data coming;
             {
                 if((rv = read(event_array[i].data.fd,buf,sizeof(buf))) <= 0 )
@@ -202,7 +188,6 @@ int main(int argc,char * argv[])
                 {
                     printf("Socket [%d] read and get %d bytes data \n",event_array[i].data.fd,rv);
                     
-
                     byte = get_msg(buf,true_buf);
 
                     if(byte > 0)
@@ -242,30 +227,23 @@ CleanUp:
 }//main
 
 
-
-
 void set_sock_rlimit(void)
 {
     struct rlimit limit = {0};
     getrlimit(RLIMIT_NOFILE,&limit);
     limit.rlim_cur = limit.rlim_max;
     setrlimit(RLIMIT_NOFILE,&limit);
-
     printf("set socket open fd max count  to %d \n",limit.rlim_max);
 }
 
 
-
 int rw_to_sqlite(char result[][32])
 
-{
-    
+{    
     char            *perrMsg,*rt;
     int                 ret;
     sqlite3         *db = 0;
-    
-    
-    
+       
     if( access("temper.db",0) != 0)
     {
         ret = sqlite3_open("temper.db",&db);
@@ -276,9 +254,7 @@ int rw_to_sqlite(char result[][32])
             return -1;
         }
         printf("open sqlite ok\n");
-
-        
-        
+ 
         const char *sql = "create table TEMPER(cid integer primary key autoincrement,ID varchar(20),TIME varchar(30),TEMPER varchar(10));";
         
         ret = sqlite3_exec(db,sql,0,0,&perrMsg);
@@ -290,8 +266,6 @@ int rw_to_sqlite(char result[][32])
         }
 
         printf("create table ok\n");    
-    
-        
         
         rt = sqlite3_mprintf("insert into TEMPER VALUES(NULL,'%s','%s','%s')",result[0],result[2],result[1]);
         
@@ -314,16 +288,14 @@ int rw_to_sqlite(char result[][32])
     else
     {
        	ret = sqlite3_open("temper.db",&db);
-    	
-        
+            
         if(ret != SQLITE_OK)
     	{
         	printf("open sqlite failure\n");
         	return -1;
     	}
     	printf("open sqlite ok\n");
-		
-		
+			
         rt = sqlite3_mprintf("insert into TEMPER VALUES(NULL,'%s','%s','%s')",result[0],result[2],result[1]);
     	
         ret = sqlite3_exec(db,rt,0,0,&perrMsg);
@@ -351,7 +323,6 @@ char get_time(char *datime)
     struct  tm *pt;
     int     cur_sec, cur_min, cur_hour, cur_day, cur_mouth, cur_year;
     time_t  t ;
-    
     
     time(&t);
     pt = localtime(&t);
